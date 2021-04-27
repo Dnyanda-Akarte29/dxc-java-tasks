@@ -1,0 +1,220 @@
+ > create table Employee with the following attributes and constraints
+
+EmpFName
+EmpMName
+EmpLastName
+EmpAge -> must be a positive number and less than 50
+EmpCity -> should begin with letter B (Ex: Bangalore , Bijapur)
+EmpDesignation -> can be any manager (Ex sales manager, acc manager)
+EmpId -> primary key must have 5 chars (EX: emp01,emp02,emp03)
+empDOB -> must be a date(data type) column
+
+SQL> create table employee
+  2  (
+  3  empfname varchar(10),
+  4  empmname varchar(10),
+  5  emplastname varchar(10),
+  6  empage int check(empage between 1 and 49),
+  7  empcity varchar(20) check(empcity like 'B%'),
+  8  empdesignation varchar(20) check(empdesignation like '%manager'),
+  9  empdob date,
+ 10  empid varchar(5) primary key
+ 11  check(length(empid) = 5)
+ 12  );
+
+Table created.
+
+SQL> desc employee;
+ Name                                       Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPFNAME                                                   VARCHAR2(10)
+ EMPMNAME                                                   VARCHAR2(10)
+ EMPLASTNAME                                                VARCHAR2(10)
+ EMPAGE                                                     NUMBER(38)
+ EMPCITY                                                    VARCHAR2(20)
+ EMPDESIGNATION                                             VARCHAR2(20)
+ EMPDOB                                                     DATE
+ EMPID                                      NOT NULL        VARCHAR2(5)
+
+-> insert 5 employee details
+
+SQL> insert into employee values('Rama','Raja','Surya',34,'Banglore','account manager','05-JUN-1998','emp01');
+
+1 row created.
+
+SQL> insert into employee values('Tanmay','Raja','Joshi',33,'Bijapur','sales manager','06-MAR-1997','emp02');
+
+1 row created.
+
+SQL> insert into employee values('Jay','Raj','Thakre',23,'Badlapur','project manager','10-MAY-1988','emp03');
+
+1 row created.
+
+SQL> insert into employee values('priti','Raju','sloan',21,'Bandra','goods manager','15-AUG-1992','emp04');
+
+1 row created.
+
+SQL> insert into employee values('pooja','Ram','khante',22,'Bandra','service manager','17-AUG-1998','emp05');
+
+1 row created.
+
+SQL> select * from employee;
+
+EMPFNAME   EMPMNAME   EMPLASTNAM     EMPAGE EMPCITY
+---------- ---------- ---------- ---------- --------------------
+EMPDESIGNATION       EMPDOB    EMPID
+-------------------- --------- -----
+Rama       Raja       Surya              34 Banglore
+account manager      05-JUN-98   emp01
+
+Tanmay     Raja       Joshi              33 Bijapur
+sales manager        06-MAR-97 emp02
+
+Jay        Raj        Thakre             23 Badlapur
+project manager      10-MAY-88 emp03
+
+
+EMPFNAME   EMPMNAME   EMPLASTNAM     EMPAGE EMPCITY
+---------- ---------- ---------- ---------- --------------------
+EMPDESIGNATION       EMPDOB    EMPID
+-------------------- --------- -----
+priti      Raju       sloan              21 Bandra
+goods manager        15-AUG-92 emp04
+
+pooja      Ram        khante             22 Bandra
+service manager      17-AUG-98 emp05
+
+
+->update any employe and change city name
+
+SQL> update employee set empcity = 'Banglore' where empid like 'emp05';
+
+1 row updated.
+
+SQL> select * from employee;
+
+EMPFNAME   EMPMNAME   EMPLASTNAM     EMPAGE EMPCITY
+---------- ---------- ---------- ---------- --------------------
+EMPDESIGNATION       EMPDOB    EMPID
+-------------------- --------- -----
+Rama       Raja       Surya              34 Banglore
+account manager      05-JUN-98 emp01
+
+Tanmay     Raja       Joshi              33 Bijapur
+sales manager        06-MAR-97 emp02
+
+Jay        Raj        Thakre             23 Badlapur
+project manager      10-MAY-88 emp03
+
+
+EMPFNAME   EMPMNAME   EMPLASTNAM     EMPAGE EMPCITY
+---------- ---------- ---------- ---------- --------------------
+EMPDESIGNATION       EMPDOB    EMPID
+-------------------- --------- -----
+priti      Raju       sloan              21 Bandra
+goods manager        15-AUG-92 emp04
+
+pooja      Ram        khante             22 Banglore
+service manager      17-AUG-98 emp05
+
+-> delete an employee
+ 
+SQL> commit;
+
+Commit complete.
+
+SQL> delete from employee where empcity = 'Bijapur';
+
+1 row deleted.
+
+SQL> select * from employee;
+
+EMPFNAME   EMPMNAME   EMPLASTNAM     EMPAGE EMPCITY
+---------- ---------- ---------- ---------- --------------------
+EMPDESIGNATION       EMPDOB    EMPID
+-------------------- --------- -----
+Rama       Raja       Surya              34 Banglore
+account manager      05-JUN-98 emp01
+
+Jay        Raj        Thakre             23 Badlapur
+project manager      10-MAY-88 emp03
+
+priti      Raju       sloan              21 Bandra
+goods manager        15-AUG-92 emp04
+
+
+EMPFNAME   EMPMNAME   EMPLASTNAM     EMPAGE EMPCITY
+---------- ---------- ---------- ---------- --------------------
+EMPDESIGNATION       EMPDOB    EMPID
+-------------------- --------- -----
+pooja      Ram        khante             22 Banglore
+service manager      17-AUG-98 emp05
+
+-> delete all employees
+
+SQL> delete from employee;
+
+5 rows deleted.
+
+SQL> select * from employee;
+
+no rows selected
+
+->get back all the employees deleted in previous delete
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from employee;
+
+EMPFNAME   EMPMNAME   EMPLASTNAM     EMPAGE EMPCITY
+---------- ---------- ---------- ---------- --------------------
+EMPDESIGNATION       EMPDOB    EMPID
+-------------------- --------- -----
+Rama       Raja       Surya              34 Banglore
+account manager      05-JUN-98 emp01
+
+Tanmay     Raja       Joshi              33 Bijapur
+sales manager        06-MAR-97 emp02
+
+Jay        Raj        Thakre             23 Badlapur
+project manager      10-MAY-88 emp03
+
+
+EMPFNAME   EMPMNAME   EMPLASTNAM     EMPAGE EMPCITY
+---------- ---------- ---------- ---------- --------------------
+EMPDESIGNATION       EMPDOB    EMPID
+-------------------- --------- -----
+priti      Raju       sloan              21 Bandra
+goods manager        15-AUG-92 emp04
+
+pooja      Ram        khante             22 Banglore
+service manager      17-AUG-98 emp05
+
+-> display employee  name and dob in(DD-MM-YYYY) fromat
+
+SQL> select empfname,empmname,emplastname,empdob from employee;
+
+EMPFNAME   EMPMNAME   EMPLASTNAM EMPDOB
+---------- ---------- ---------- ---------
+Rama       Raja       Surya      05-JUN-98
+Tanmay     Raja       Joshi      06-MAR-97
+Jay        Raj        Thakre     10-MAY-88
+priti      Raju       sloan      15-AUG-92
+pooja      Ram        khante     17-AUG-98
+
+-> display employee  name in following format  
+       Fname   Mname    lname
+Ex:  Sachin  Ramesh  Tendulkar
+should be displayed as  S.R.Tendulkar  
+
+SQL> select substr(empfname,1,1) ||'.'|| substr(empmname,1,1) ||' '||emplastname from employee;
+
+SUBSTR(EMPFNAME)
+--------------
+R.R Surya
+T.R Joshi
+J.R Thakre
+p.R sloan
+p.R khante
