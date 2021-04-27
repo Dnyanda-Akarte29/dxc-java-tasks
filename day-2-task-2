@@ -1,0 +1,53 @@
+SQL> create table demo
+  2  (
+  3  day varchar(10),
+  4  sess int,
+  5  faculty varchar(15),
+  6  sem int,
+  7  room varchar(5),
+  8  subject varchar(10),
+  9  unique(day,sess,faculty),
+ 10  unique(day,sess,room),
+ 11  unique(day,sess,sem));
+
+Table created.
+
+SQL> insert into demo values('mon','1','jay',7,'r1','Oracle');
+
+1 row created.
+
+SQL> insert into demo values('mon','1','jay',5,'r2','testing');
+insert into demo values('mon','1','jay',5,'r2','testing')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (DXC.SYS_C005025) violated
+
+
+SQL> insert into demo values('mon','1','cena',7,'r3','dbms');
+insert into demo values('mon','1','cena',7,'r3','dbms')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (DXC.SYS_C005027) violated
+
+
+SQL> insert into demo values('mon','1','rock',4,'r1','ds');
+insert into demo values('mon','1','rock',4,'r1','ds')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (DXC.SYS_C005026) violated
+
+
+SQL> insert into demo values('mon','1','jay',7,'r1','oracle');
+insert into demo values('mon','1','jay',7,'r1','oracle')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (DXC.SYS_C005025) violated
+
+
+SQL> insert into demo values('tue','1','jay',7,'r1','oracle');
+
+1 row created.
+
+SQL> insert into demo values('mon','2','jay',7,'r1','oracle');
+
+1 row created.
