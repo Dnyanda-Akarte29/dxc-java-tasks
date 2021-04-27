@@ -1,0 +1,117 @@
+# day-1-assignment-1
+Oracle SQL Task-1 codes
+
+#create table called stock and sales with 5 columns each.
+SQL> create table stock
+  2  (
+  3  stockid int,
+  4  stockname varchar(50),
+  5  country varchar(20),
+  6  currentvalue float(5),
+  7  purchase int
+  8  );
+  
+  Table created.
+  
+  SQL> create table sales
+  2  (dateandtime timestamp,
+  3  productid int,
+  4  salesname varchar(20),
+  5  salesquant int,
+  6  country_name varchar(20)
+  7  );
+
+Table created.
+
+SQL> insert into stock values('1','Wagonr','us','11','3');
+
+1 row created.
+
+SQL> insert into stock values('3','Swift','India','45','5');
+
+1 row created.
+
+SQL> insert into stock values('2','Vista','Morocco','13','5');
+
+1 row created.
+
+SQL> insert into sales values(current_timestamp,'1','Vista','5','Morocco');
+
+1 row created.
+
+SQL> insert into sales values(current_timestamp,'2','swift','5','us');
+
+1 row created.
+
+SQL> insert into sales values(current_timestamp,'3','wagonr','1','japan');
+
+1 row created.
+
+SQL> select * from sales;
+
+DATEANDTIME
+---------------------------------------------------------------------------
+ PRODUCTID SALESNAME            SALESQUANT COUNTRY_NAME
+---------- -------------------- ---------- --------------------
+26-APR-21 03.42.50.515000 PM
+         1 Vista                         5 Morocco
+
+26-APR-21 03.44.21.107000 PM
+         2 swift                         5 us
+
+26-APR-21 03.45.26.324000 PM
+         3 wagonr                        1 japan
+
+
+SQL> select * from stock;
+
+   STOCKID STOCKNAME
+---------- --------------------------------------------------
+COUNTRY              CURRENTVALUE   PURCHASE
+-------------------- ------------ ----------
+          1 Wagonr
+us                             11          3
+
+          3 Swift
+India                          45          5
+
+          2 Vista
+Morocco                        13          5
+
+
+->display current date and time
+SQL> SELECT TO_CHAR
+  2      (SYSDATE, 'MM-DD-YYYY HH24:MI:SS') "NOW"
+  3       FROM DUAL;
+
+NOW
+-------------------
+04-26-2021 15:47:39
+
+-> display current date
+SQL> select sysdate from dual;
+
+SYSDATE
+---------
+26-APR-21
+
+-> display current date in DD/MM/YYYY format
+SQL> select to_char(sysdate,'DD/MM/YYYY') "NOW" from dual;
+
+NOW
+----------
+26/04/2021
+
+->display current day as Tuesday
+SQL> select to_char(date'2021-04-26', 'DAY') day from dual;
+
+DAY
+---------
+MONDAY
+
+-> display date after 10 days from the current date
+SQL> select sysdate + 10 from dual;
+
+SYSDATE+1
+---------
+06-MAY-21
