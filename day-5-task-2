@@ -1,0 +1,127 @@
+create a function to   check 2 given chars
+are equal or not irrespective of the case
+
+Signature of function is as follows:
+boolean isEqual(char c1 , char c2)
+
+Example ->  A , a or a, A or A, A or a , a should return ture else return false
+
+code--
+
+
+public class DayFiveTaskTwo {
+    
+	boolean isEqual(char c1,char c2) {
+		boolean ans = false;
+		if(c1 >= 'A' && c1 <= 'Z')
+        {
+           c1 = (char)((int)c1 + 32);
+        }
+		else if(c2 >= 'A' && c2 <= 'Z')
+        {
+           c2 = (char)((int)c2 + 32);
+        }
+		if(c1 == c2) {
+			ans = true;
+		}
+		return ans;
+		
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+        char c1 = 'a';
+        char c2 = 'A';
+       
+        char c3 = 'i';
+        char c4 = 'g';
+        
+		    DayFiveTaskTwo character_check = new DayFiveTaskTwo();
+		    boolean res = character_check.isEqual(c1,c2);
+	      System.out.println(res);
+	   
+	      DayFiveTaskTwo character_check_two = new DayFiveTaskTwo();
+		    boolean res1 = character_check_two.isEqual(c3,c4);
+	      System.out.println(res1);
+	}
+
+}
+
+output--
+
+true
+false
+-----------------------------------------------------------------------------------------------------------------------------
+
+-> create a function to   check 2 given Strings
+are equal or not irrespective of the case
+
+Signature of function is as follows:
+boolean isEqual(String str1 , String str2)
+
+Example -> Hello , HELLO is any case should return ture else return false  
+
+code--
+
+
+public class CompareString {
+	
+	boolean isEqual(String str1, String str2) {
+		boolean ans = false;
+		int len1 = str1.length();
+		int len2 = str2.length();
+		char ch1[] = str1.toCharArray();
+		char ch2[] = str2.toCharArray();
+		if(len1==len2) {
+			for(int i = 0; i < ch1.length; i++)
+		    {
+				if(ch1[i] >= 'A' && ch1[i] <= 'Z')
+		         {
+		            ch1[i] = (char)((int)ch1[i] + 32);
+		          
+		         }
+		    }
+			for(int i = 0; i < ch2.length; i++)
+		    {
+				if(ch2[i] >= 'A' && ch2[i] <= 'Z')
+		         {
+		            ch2[i] = (char)((int)ch2[i] + 32);
+		         }
+		    }
+		    for(int i = 0;i<ch1.length;i++) {
+		    	if(ch1[i]!=ch2[i]) {
+		    		ans = false;
+		    		break;
+		    	}
+		    	else
+		    		ans = true;
+		    }
+		}
+		return ans;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+        String str1 = "DnyanDA";
+        String str2 = "dnyANda";
+		
+        String str3 = "DnyanDA";
+        String str4 = "dcaANdv";
+        
+	      CompareString string_check = new CompareString();
+		    boolean res_s = string_check.isEqual(str1,str2);
+	      System.out.println(res_s);
+	    
+	     CompareString string_check_two = new CompareString();
+		   boolean res = string_check_two.isEqual(str3,str4);
+	     System.out.println(res);
+	}
+}
+
+output--
+
+true
+false
+---------------------------------------------------------------------------------------------------------
