@@ -1,0 +1,157 @@
+Q1)   int sum(int... x){
+System.out.println("sum meth "+x[6]);
+return 10;
+}
+
+ // return the total sum of the args
+// print the max value
+// print the min
+// print no of ODD and even digits
+//print count numbers div by 3
+
+code--
+
+package AbstractClass;
+
+public class Sum {
+    
+	public static int sum(int ... x)
+	{
+		int total=0,max=x[0],min=x[0],even=0,odd=0,divby3=0;
+		for(int i:x)
+		{
+			total+=i;
+			if(i>max)
+				max=i;
+			if(i<min)
+				min=i;
+			if(i%2==0)
+				even++;
+			else
+				odd++;
+			if(i%3==0)
+				divby3++;
+		}
+		System.out.println("Max: "+max+"\nMin: "+min+"\nEven: "+even+"\nOdd:"+odd+"\nDivby3: "+divby3);
+		return total;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Total: "+sum(7,8,4,2,6));
+	}
+
+}
+
+output--
+
+Max: 8
+Min: 2
+Even: 4
+Odd:1
+Divby3: 1
+Total: 27
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Q2) reverse a given string 
+
+Example :  Hello
+
+output: olleH
+
+code--
+
+package AbstractClass;
+
+
+public class ResverseString {
+
+	String reverseStr(String data) {
+		char arr[] = data.toCharArray();
+		char swap = 0;
+		int start = 0;
+		int end = arr.length-1;
+		while(start<end) {
+			swap = arr[start];
+			arr[start] = arr[end];
+			arr[end] = swap;
+			start++;
+			end--;
+		}
+		String reverse=new String(arr);
+		return reverse;
+	}
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String data = "Hello";
+		
+		ResverseString num = new ResverseString();
+        String res = num.reverseStr(data);
+        System.out.println(res);     
+	}
+
+}
+
+output--
+
+olleH
+---------------------------------------------------------------------------------------------------------------------------------------
+
+q3) reverse a given string and maintain its caps position
+
+EX:  
+input ->  HeLloWorld
+output-DlRowOlleh
+
+input ->  MyJavaWorld
+output-DlRoWaVajym
+
+code--
+
+package AbstractClass;
+
+public class SumQuestions {
+	
+	String reverseStrCaps(String data) {
+		char arr[] = data.toCharArray();
+		char swap = 0;
+		int start = 0;
+		int end = arr.length-1;
+		while(start<end) {
+			if(arr[start]>64 && arr[start]<91) {
+				if(arr[end]>96 && arr[end]<123){
+					arr[end] = (char)((int)arr[end] - 32);
+					arr[start] = (char)((int)arr[start] + 32);
+				}	
+			}else if(arr[start]>=96 && arr[start]<=123) {
+				if(arr[end]>=64 && arr[end]<=91) {
+					arr[end] = (char)((int)arr[end] + 32);
+					arr[start] = (char)((int)arr[start] - 32);
+				}
+			}
+			swap = arr[start];
+			arr[start] = arr[end];
+			arr[end] = swap;
+			start++;
+			end--;
+		}
+		String reverse=new String(arr);
+		return reverse;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        String data = "HelloWorld";
+		
+        SumQuestions r = new SumQuestions();
+        String res = r.reverseStrCaps(data);
+        System.out.println(res);
+	}
+
+}
+
+output--
+
+DlrowOlleh
