@@ -125,8 +125,8 @@ public class SumQuestions {
 					arr[end] = (char)((int)arr[end] - 32);
 					arr[start] = (char)((int)arr[start] + 32);
 				}	
-			}else if(arr[start]>=96 && arr[start]<=123) {
-				if(arr[end]>=64 && arr[end]<=91) {
+			}else if(arr[start]>96 && arr[start]<123) {
+				if(arr[end]>64 && arr[end]<91) {
 					arr[end] = (char)((int)arr[end] + 32);
 					arr[start] = (char)((int)arr[start] - 32);
 				}
