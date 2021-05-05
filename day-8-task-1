@@ -1,0 +1,155 @@
+Note: create with all getter setter cont and to string
+
+// create showroom class which has cars in it . no duplicate car can be stored
+
+ShowRoom ,  Car ->
+name
+cars
+
+// create 2 showroom  objects ..
+
+// accept showroom name from the cmd and display cars in the showroom
+
+code--
+
+Cars.java
+
+package showRoonTask;
+
+public class Cars {
+	
+	    private String color;
+	    private String name;
+	    private String price;
+	    private String size;
+	    private String c_name;
+	    
+	    public String getColor() {
+		return color;
+		}
+		public void setColor(String color) {
+		this.color = color;
+		}
+		public String getName() {
+		return name;
+		}
+		public void setName(String name) {
+		this.name = name;
+		}
+		public String getPrice() {
+		return price;
+		}
+		public void setPrice(String price) {
+		this.price = price;
+		}
+		public String getSize() {
+		return size;
+		}
+		public void setSize(String size) {
+		this.size = size;
+		}
+		public String getC_name() {
+		return c_name;
+		}
+		public void setC_name(String c_name) {
+		this.c_name = c_name;
+		}
+		public Cars(String color, String name, String price, String size,String c_name) {
+		super();
+		this.color = color;
+		this.name = name;
+		this.price = price;
+		this.size = size;
+		this.c_name = c_name;
+		}
+		public Cars() {
+			// TODO Auto-generated constructor stub
+		}
+		@Override
+		public String toString() {
+		return "Cars Info :[Name=" + name + " Color=" + color + ", Price=" + price + ", Size=" + size + " Company Name=" + c_name + "]";
+		}
+		
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CarsMain.java
+
+package showRoonTask;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+
+import TaskDay.Player;
+
+public class CarsMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Cars Cars1=new Cars("Red", "Baleno", "Twelve Lakh", "Five Sitter","Maruti");
+		Cars Cars2=new Cars("Yellow", "WagonR", "Five Lakh", "Five Sitter","Maruti");
+		Cars Cars3=new Cars("Blue", "Dzire", "Twenty Lakh", "Five Sitter","Maruti");
+		Cars Cars4=new Cars("Silver", "S-Presso", "Fifteen Lakh", "Five Sitter","Maruti");
+		
+		Cars Cars5=new Cars("Off White", "XUV500", "Seven Lakh", "Nine Sitter","Mahindra");
+		Cars Cars6=new Cars("Blue", "XUV300", "Fifteen Lakh", "Five Sitter","Mahindra");
+		Cars Cars7=new Cars("White", "Thar", "Twelve Lakh", "Five Sitter","Mahindra");
+		Cars Cars8=new Cars("Red", "Bolero", "six Lakh", "Nine Sitter","Mahindra");
+		
+		ArrayList<Cars> maruti_cars = new ArrayList<>(); 
+		maruti_cars.add(Cars1);
+		maruti_cars.add(Cars2);
+		maruti_cars.add(Cars3);
+		maruti_cars.add(Cars4);
+		
+		HashSet<Cars> maruticars=new HashSet<Cars>(maruti_cars);
+		
+		ArrayList<Cars> mahindra_cars = new ArrayList<>(); 
+		mahindra_cars.add(Cars5);
+		mahindra_cars.add(Cars6);
+		mahindra_cars.add(Cars7);
+		mahindra_cars.add(Cars8);
+		
+		HashSet<Cars> mahindracars=new HashSet<Cars>(mahindra_cars);
+		
+		Map<String , HashSet<Cars>> company=new HashMap<String, HashSet<Cars>>();
+
+		company.put("Maruti", maruticars);
+		company.put("Mahindra", mahindracars);
+		
+		System.out.println("Enter Name of showroom to see cars in showroom");
+		Scanner sc=new Scanner(System.in);
+		String s_name=sc.nextLine();
+		HashSet<Cars> disp_cars=company.get(s_name);
+		for(Cars car:disp_cars)
+		{
+		System.out.println(car);
+		}
+		
+	}
+
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+output--
+
+Enter Name of showroom to see cars in showroom
+Mahindra
+Cars Info :[Name=Thar Color=White, Price=Twelve Lakh, Size=Five Sitter Company Name=Mahindra]
+Cars Info :[Name=Bolero Color=Red, Price=six Lakh, Size=Nine Sitter Company Name=Mahindra]
+Cars Info :[Name=XUV300 Color=Blue, Price=Fifteen Lakh, Size=Five Sitter Company Name=Mahindra]
+Cars Info :[Name=XUV500 Color=Off White, Price=Seven Lakh, Size=Nine Sitter Company Name=Mahindra]
+
+Enter Name of showroom to see cars in showroom
+Maruti
+Cars Info :[Name=S-Presso Color=Silver, Price=Fifteen Lakh, Size=Five Sitter Company Name=Maruti]
+Cars Info :[Name=Dzire Color=Blue, Price=Twenty Lakh, Size=Five Sitter Company Name=Maruti]
+Cars Info :[Name=WagonR Color=Yellow, Price=Five Lakh, Size=Five Sitter Company Name=Maruti]
+Cars Info :[Name=Baleno Color=Red, Price=Twelve Lakh, Size=Five Sitter Company Name=Maruti]
